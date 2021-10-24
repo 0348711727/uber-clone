@@ -1,43 +1,44 @@
 import React from 'react'
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-
-export default function RestaurentItem() {
+export default function RestaurantItems(props) {
+    // console.log(props.restaurantData)
     return (
         <TouchableOpacity activeOpacity={1} style={{marginBottom: 30}}>
-            <View style={styles.restaurentItem}>
-            <RestaurentImage />
-            <RestaurentInfo /> 
-            </View>
+            { props.restaurantData && props.restaurantData.map((restaurant) => (
+                <View style={styles.restaurantItem} key={restaurant.id}>
+                    <RestaurantImage image={restaurant.image_url}/>
+                    <RestaurantInfo rating={restaurant.rating} reviews={restaurant.reviews} name={restaurant.name}/> 
+                </View>
+            ))}
         </TouchableOpacity>
     )
 }
-const RestaurentImage = () => (
+const RestaurantImage = (props) => (
     <View>
-        <Image source={require('../assets/images/bg1.jpg')} style={styles.restaurentimg}/>
+        <Image source={{uri: props.image}} style={styles.restaurantimg}/>
         <TouchableOpacity style={styles.heartIcon}>
             <MaterialCommunityIcons name="heart-outline" size={25} style={{color: 'white'}} />
         </TouchableOpacity>
     </View>
 )
-const RestaurentInfo = () => (
+const RestaurantInfo = ({name, reviews, rating}) => (
     <View style={styles.res_info}>
         <View>
-            <Text style={styles.res_info_text_1}>This Burger Look Yummy !</Text>
+            <Text style={styles.res_info_text_1}>{name}</Text>
             <Text style={styles.res_info_text_2}>5-10 mins</Text>
         </View>
         <View style={styles.res_info_text_3}>
-            <Text >4.5</Text>
+            <Text >{rating}</Text>
         </View>
     </View>
 )
 const styles = StyleSheet.create({
-    restaurentItem: {
+    restaurantItem: {
         padding: 15,
         backgroundColor: 'white'
-    }
-    ,
-    restaurentimg: {
+    },
+    restaurantimg: {
         width: '100%',
         height: 180
     },

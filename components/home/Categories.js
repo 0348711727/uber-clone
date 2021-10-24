@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native'
 
-import { items } from "../DataTest";
+import { items } from "../../DataTest";
 export default function Categories() {
     return (
         <View style={styles.container}>

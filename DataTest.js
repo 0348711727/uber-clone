@@ -1,18 +1,27 @@
-export const localRestaurents = [
+export const localRestaurants = [
     {
         id: 1,
         name: "Beachside Bar",
-        image: require("./assets/images/shopping-bag.png"),
+        image_url: require("./assets/images/bg1.jpg"),
         categories: ['Cafe', 'Bar'],
         price: '$$',
         reviews: 1234,
-        rating: 4.9
+        rating: 4.5
     },
     {
         id: 2,
         name: "Viet Nam Restaurant",
-        // image_url: require("./assets/images/res_2.jfif"),
+        image_url: require("./assets/images/bg2.jpg"),
         categories: ['Cafe', 'Bar'],
+        price: '$$',
+        reviews: 1234,
+        rating: 5.0
+    },
+    {
+        id: 3,
+        name: "Viet Nam Restaurant",
+        image_url: require("./assets/images/bg3.jpg"),
+        categories: ['Cafe', 'Fast Food'],
         price: '$$',
         reviews: 1234,
         rating: 4.9

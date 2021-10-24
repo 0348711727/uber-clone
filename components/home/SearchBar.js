@@ -3,11 +3,20 @@ import { View, Text, StyleSheet } from 'react-native'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
-export default function SearchBar() {
+
+// const cityAvailable = [ 'Aguada', 'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'Barceloneta', 'Caguas', 'California', 'Carolina', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Dorado', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming', '']
+export default function SearchBar({cityHandler}) {
+    
     return (
         <View style={styles.searchBar}> 
             <GooglePlacesAutocomplete 
-                placeholder="Search"
+                query={{key: 'AIzaSyBbfejE1EwBFX4Ydj2sAz5lgQkWtaA67eo'}}
+                onPress={(data, details = null) => {
+                    // console.log(data.description)
+                    const city = data.description.split(",")[0]
+                    cityHandler(city)
+                }}
+                placeholder="Search"    
                 styles={{
                     textInput:{
                         backgroundColor: '#eee',
@@ -21,7 +30,7 @@ export default function SearchBar() {
                         flexDirection: 'row',
                         alignItems: 'center'
                     }
-            }} 
+                }} 
                 renderLeftButton = {() => (
                     <View style={{marginLeft: 7}}>
                         <Ionicons name="location-sharp" size={24} />
