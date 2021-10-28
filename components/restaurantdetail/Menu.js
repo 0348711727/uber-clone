@@ -3,6 +3,8 @@ import { View, Text, Image, StyleSheet } from 'react-native'
 import { foods } from "../../DataTest";
 import { Divider } from 'react-native-elements/dist/divider/Divider'
 import BouncyCheckbox from "react-native-bouncy-checkbox";
+import { useDispatch, useSelector } from "react-redux";
+
 const yelpRestaurantInfo = {
     name: "Vietnam Pho",
     image: "https://s3-media2.fl.yelpcdn.com/bphoto/g-9le0mqVhH-LSNc9B8iQA/o.jpg",
@@ -15,7 +17,18 @@ const { name, image, reviews, rating, categories, price } = yelpRestaurantInfo;
 const formatCategory = categories.map((category) => category.title).join(' • ')
 const description = `${formatCategory} ${price ? ' • ' + price : ''} ${rating} (${reviews}) `
 
-export default function Menu() {
+export default function Menu({restaurantName}) {
+    const dispatch = useDispatch();
+    const selectItem = (item, checkboxValue) => dispatch({
+        type: 'ADD_TO_CART',
+        payload: {...item, 
+            restaurantName,
+            checkboxValue}
+    })
+    const cartItems = useSelector((state) => state.cartReducer.selectedItems.items)
+
+    const isFoodInCart = (food, cartItems) => Boolean(cartItems.find((item) => food.name.includes(item.name)))
+    
     return (
         <View>
             { foods.map((food) =>(
@@ -24,6 +37,8 @@ export default function Menu() {
                         <BouncyCheckbox iconStyle={{borderColor: 'lightgray',
                                         borderRadius: 0,}}
                                         fillColor = 'green' 
+                                        isChecked = {isFoodInCart(food, cartItems)}
+                                        onPress = {(checkboxValue) => selectItem(food, checkboxValue)}
                                     />
                             <MenuInfo title={food.name} description={food.description} price={food.price}/>
                             <MenuImg image={food.image} />

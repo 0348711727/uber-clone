@@ -26,7 +26,7 @@ const RestaurantDescription = (props) => {
 const styles = StyleSheet.create({
     aboutImg: {
         width: '100%',
-        height: 180
+        height: 160
     },
     aboutName: {
         fontSize: 20,

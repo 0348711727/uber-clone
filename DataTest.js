@@ -94,7 +94,7 @@ export const foods = [
         },
         "name": "Lucille's",
         "phone": "+17135682505",
-        "price": "$$123",
+        "price": "$13.50",
         "rating": 4,
         "review_count": 1199,
         "transactions": [
@@ -143,7 +143,7 @@ export const foods = [
         },
         "name": "The Breakfast Klub",
         "phone": "+17135288561",
-        "price": "$$456",
+        "price": "$40.80",
         "rating": 4.5,
         "review_count": 4918,
         "transactions": [
@@ -184,7 +184,7 @@ export const foods = [
         },
         "name": "Hearsay Market Square",
         "phone": "+17132258079",
-        "price": "$$789",
+        "price": "$20.4",
         "rating": 4,
         "review_count": 1857,
         "transactions": [
