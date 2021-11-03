@@ -40,6 +40,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@react-navigation/native", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:6.0.6"],
             ["@react-navigation/stack", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:6.0.11"],
             ["expo", "npm:43.0.1"],
+            ["lottie-react-native", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:4.1.3"],
             ["react", "npm:17.0.1"],
             ["react-dom", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:17.0.1"],
             ["react-native", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:0.66.1"],
@@ -5455,6 +5456,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["dedent", [
+        ["npm:0.6.0", {
+          "packageLocation": "./.yarn/cache/dedent-npm-0.6.0-caa47ac627-fe2c0f5adb.zip/node_modules/dedent/",
+          "packageDependencies": [
+            ["dedent", "npm:0.6.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["deepmerge", [
         ["npm:3.3.0", {
           "packageLocation": "./.yarn/cache/deepmerge-npm-3.3.0-b15e2840d6-4322195389.zip/node_modules/deepmerge/",
@@ -7464,6 +7474,39 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["loose-envify", "npm:1.4.0"],
             ["js-tokens", "npm:4.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["lottie-react-native", [
+        ["npm:4.1.3", {
+          "packageLocation": "./.yarn/unplugged/lottie-react-native-virtual-474d09b690/node_modules/lottie-react-native/",
+          "packageDependencies": [
+            ["lottie-react-native", "npm:4.1.3"]
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:4.1.3", {
+          "packageLocation": "./.yarn/unplugged/lottie-react-native-virtual-474d09b690/node_modules/lottie-react-native/",
+          "packageDependencies": [
+            ["lottie-react-native", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:4.1.3"],
+            ["@types/lottie-ios", null],
+            ["@types/react", null],
+            ["@types/react-native", null],
+            ["invariant", "npm:2.2.4"],
+            ["lottie-ios", null],
+            ["prop-types", "npm:15.7.2"],
+            ["react", "npm:17.0.1"],
+            ["react-native", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:0.66.1"],
+            ["react-native-safe-modules", "virtual:474d09b690ad6bf84dc77c662eeffe176953e046a8ef205155a06724e88b7341f5f5f1c40feac758db1e3feb5870d43256156b79b59c33e5d16c0c9eded0e424#npm:1.0.3"]
+          ],
+          "packagePeers": [
+            "@types/lottie-ios",
+            "@types/react-native",
+            "@types/react",
+            "lottie-ios",
+            "react-native",
+            "react"
           ],
           "linkType": "HARD",
         }]
@@ -9539,6 +9582,29 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["react-native-safe-modules", [
+        ["npm:1.0.3", {
+          "packageLocation": "./.yarn/cache/react-native-safe-modules-npm-1.0.3-2755e87a61-df30e1935d.zip/node_modules/react-native-safe-modules/",
+          "packageDependencies": [
+            ["react-native-safe-modules", "npm:1.0.3"]
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:474d09b690ad6bf84dc77c662eeffe176953e046a8ef205155a06724e88b7341f5f5f1c40feac758db1e3feb5870d43256156b79b59c33e5d16c0c9eded0e424#npm:1.0.3", {
+          "packageLocation": "./.yarn/__virtual__/react-native-safe-modules-virtual-7430770f33/0/cache/react-native-safe-modules-npm-1.0.3-2755e87a61-df30e1935d.zip/node_modules/react-native-safe-modules/",
+          "packageDependencies": [
+            ["react-native-safe-modules", "virtual:474d09b690ad6bf84dc77c662eeffe176953e046a8ef205155a06724e88b7341f5f5f1c40feac758db1e3feb5870d43256156b79b59c33e5d16c0c9eded0e424#npm:1.0.3"],
+            ["@types/react-native", null],
+            ["dedent", "npm:0.6.0"],
+            ["react-native", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:0.66.1"]
+          ],
+          "packagePeers": [
+            "@types/react-native",
+            "react-native"
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["react-native-size-matters", [
         ["npm:0.3.1", {
           "packageLocation": "./.yarn/cache/react-native-size-matters-npm-0.3.1-031cb1f4a2-f8fa7f301d.zip/node_modules/react-native-size-matters/",
@@ -10006,6 +10072,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@react-navigation/native", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:6.0.6"],
             ["@react-navigation/stack", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:6.0.11"],
             ["expo", "npm:43.0.1"],
+            ["lottie-react-native", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:4.1.3"],
             ["react", "npm:17.0.1"],
             ["react-dom", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:17.0.1"],
             ["react-native", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:0.66.1"],

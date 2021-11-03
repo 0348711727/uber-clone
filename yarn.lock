@@ -3291,6 +3291,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dedent@npm:^0.6.0":
+  version: 0.6.0
+  resolution: "dedent@npm:0.6.0"
+  checksum: fe2c0f5adb0b24407988e4adcd22befa0a27259091d4c40574c72da29fa6a6989e15a522ffc0f934ba6bb511b6498b315e7cdcf4a33a310cfaf1a8555a106484
+  languageName: node
+  linkType: hard
+
 "deepmerge@npm:^3.2.0":
   version: 3.3.0
   resolution: "deepmerge@npm:3.3.0"
@@ -5135,6 +5142,21 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"lottie-react-native@npm:^4.1.3":
+  version: 4.1.3
+  resolution: "lottie-react-native@npm:4.1.3"
+  dependencies:
+    invariant: ^2.2.2
+    prop-types: ^15.5.10
+    react-native-safe-modules: ^1.0.3
+  peerDependencies:
+    lottie-ios: ^3.2.3
+    react: "*"
+    react-native: ">=0.46"
+  checksum: 0f0dcd416111bae78c8e3a55578718368aeefc80201cb6fbe16962534e13b99e05839f42edb36bbbdaf836930299d7008d281ec890d9c0c7f359a42675980980
+  languageName: node
+  linkType: hard
+
 "lru-cache@npm:^6.0.0":
   version: 6.0.0
   resolution: "lru-cache@npm:6.0.0"
@@ -6546,7 +6568,7 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.6.0, prop-types@npm:^15.7.2":
+"prop-types@npm:^15.5.10, prop-types@npm:^15.6.0, prop-types@npm:^15.7.2":
   version: 15.7.2
   resolution: "prop-types@npm:15.7.2"
   dependencies:
@@ -6786,6 +6808,17 @@ fsevents@^2.1.2:
     react: "*"
     react-native: "*"
   checksum: 4feda1bbc9e18b3b279b972303f1866c46e37f331ef22cd2ff630599fdd8b2b8c7a84cc53420df595b89d95d0bce7496333fe28ea5c4b2330d9d1b7beab8f389
+  languageName: node
+  linkType: hard
+
+"react-native-safe-modules@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "react-native-safe-modules@npm:1.0.3"
+  dependencies:
+    dedent: ^0.6.0
+  peerDependencies:
+    react-native: "*"
+  checksum: df30e1935dfb32ece9be57cd21ccbbecd058a68942536ff6c543f591e5488cc22f17093131eaabf490b6e187caa78e802a4b2e55c890af1c48a3f012dd57c9f2
   languageName: node
   linkType: hard
 
@@ -7224,6 +7257,7 @@ fsevents@^2.1.2:
     "@react-navigation/native": ^6.0.6
     "@react-navigation/stack": ^6.0.11
     expo: ^43.0.0
+    lottie-react-native: ^4.1.3
     react: 17.0.1
     react-dom: 17.0.1
     react-native: ^0.66.1
