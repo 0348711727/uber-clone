@@ -25,9 +25,9 @@ export default function OrderCompleted({ navigation }) {
                 .catch(err => console.log(err))
         }
         getOrder()
-        return getOrder();
+        return () => getOrder();
     }, [])
-    console.log('my lastOrder', lastOrder)
+    // console.log('my lastOrder', lastOrder)
     return (
         <SafeAreaView style={GlobalStyles.droidSafeArea}>
             <View style={{ position: 'absolute' }}>
