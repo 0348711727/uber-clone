@@ -13,8 +13,30 @@ import BottomTabs from '../components/home/BottomTabs'
 const YELP_API_KEY = "5tv9jXQsjkf43N5n42IvaUF1K-PISDFhQNyBC_rN334e43IhoE_h68GwgAQAobhQwvkiEXulKLu7s8JS9J-mE40LIax_kkE1JA66oglwlmPZoLc_9ANHTq3f0GJzYXYx"
 
 export default function Home({ navigation }) {
+    
     const [restaurantData, setRestaurantData] = useState();
-    const [city, setCity] = useState('Texas');
+    const [city, setCity] = useState('New York');
+    // const [city, setCity] = useState('Aguada', 'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'Barceloneta', 'Caguas', 'California', 'Carolina', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Dorado', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming');
+    
+    //Set city 5s reset location
+    const getRndInteger = (min, max) => {
+        return Math.floor(Math.random() * (max - min) ) + min;
+      }
+    const cityUber = [ 'Aguada', 'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'Barceloneta', 'Caguas', 'California', 'Carolina', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Dorado', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming', '']
+    const cityAvailable = cityUber[getRndInteger(0, cityUber.length - 1)]
+      
+    const cityRefreshEvery5s = () => {
+        const removeTimeOut = setTimeout(() => setCity(cityAvailable), 30000)
+        return removeTimeOut;
+    }
+    useEffect(() => {
+        const deleteTimeOut = cityRefreshEvery5s();
+        return () => {
+            clearTimeout(deleteTimeOut);
+        }
+    }, [city]) //clearTimeout after used because if i don't clear, it will cost so much memory of the app
+
+    //end here
     const [activeTab, setActiveTab] = useState('Delivery');
 
     const getRestaurantFromYelp = async () => {
@@ -44,14 +66,15 @@ export default function Home({ navigation }) {
         <SafeAreaView style={GlobalStyles.droidSafeArea}>
             <View style={{backgroundColor: "white", padding: 15}}>
                 <HeaderTab activeTab={activeTab} setActiveTab={setActiveTab}/>
-                <SearchBar cityHandler={setCity}/>
+                {/* <SearchBar cityHandler={setCity}/> */}
+                <SearchBar cityHandler={cityRefreshEvery5s}/>
             </View>
             <ScrollView showsHorizontalScrollIndicator={false}>
                 <Categories />
                 {   restaurantData && <RestaurantItems restaurantData={restaurantData} navigation={navigation}/> }
             </ScrollView>
             <Divider width={1} />
-            <BottomTabs />
+            <BottomTabs navigation={navigation}/>
         </SafeAreaView>
     )
 }

@@ -27,10 +27,10 @@ export default function ViewCart({navigation}) {
         }
             fetch('http://192.168.1.9:5000/orders', requestOptions)
             .then((response) => response.json())
-            .then((json) => console.log(json))
+            // .then((json) => console.log('post order', json))
             .catch((err) => console.log(err));
         setModalVisible(false)
-        navigation.navigate('OrderCompleted', )
+        navigation.navigate('OrderCompleted')
     };
     // const result = await fetch('https://webhook.site/0109c004-e467-47d6-9170-38cc77ef7b10', requestOptions)
     // .then(res => console.log(res))
