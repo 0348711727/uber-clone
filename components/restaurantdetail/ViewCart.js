@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Modal } from 'react-native'
 import { useSelector } from 'react-redux'
 import Order from "../restaurantdetail/Order"
 import { Divider } from 'react-native-elements/dist/divider/Divider'
+import LottieView from "lottie-react-native";
 
-export default function ViewCart({navigation}) {
+export default function ViewCart({ navigation }) {
     const [modalVisible, setModalVisible] = useState(false)
+    const [loading, setLoading] = useState(false)
     // const items = useSelector((state) => state.cartReducer.selectedItems.items)
     const { items, restaurantName } = useSelector((state) => state.cartReducer.selectedItems)
     const total = items /// chuyển từ $ thành number để tính toán
@@ -15,6 +17,7 @@ export default function ViewCart({navigation}) {
     const totalMoney = Math.round(total * 100) / 100;
 
     const addOrderToDB = () => {
+        setLoading(true)
         const requestOptions = {
             method: 'POST',
             body: JSON.stringify({
@@ -25,12 +28,16 @@ export default function ViewCart({navigation}) {
                 'Content-type': 'application/json; charset=UTF-8',
             },
         }
-            fetch('http://192.168.1.9:5000/orders', requestOptions)
+        // fetch('http://192.168.1.9:5000/orders', requestOptions)
+        fetch('http://192.168.31.22:5000/orders', requestOptions)
             .then((response) => response.json())
-            // .then((json) => console.log('post order', json))
+            .then(() => setTimeout(() => {
+                setLoading(false)
+            }, 2500))
             .catch((err) => console.log(err));
-        setModalVisible(false)
+
         navigation.navigate('OrderCompleted')
+
     };
     // const result = await fetch('https://webhook.site/0109c004-e467-47d6-9170-38cc77ef7b10', requestOptions)
     // .then(res => console.log(res))
@@ -57,7 +64,10 @@ export default function ViewCart({navigation}) {
                         </View>
                         <Divider width={1} />
                         <View style={{ alignItems: 'center' }}>
-                            <TouchableOpacity onPress={() => addOrderToDB()} style={styles.modalCheckoutBtn}>
+                            <TouchableOpacity onPress={() => {
+                                addOrderToDB()
+                                setModalVisible(false)
+                            }} style={styles.modalCheckoutBtn}>
                                 <Text style={{ fontSize: 16, color: 'white' }}>Check Out    ${totalMoney}0</Text>
                             </TouchableOpacity>
                         </View>
@@ -107,6 +117,19 @@ export default function ViewCart({navigation}) {
                     </View>
                 </View>)
                 : (<></>)}
+            {loading && (<>
+                <View style={{
+                    backgroundColor: 'black',
+                    position: 'absolute',
+                    opacity: 0.6,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: '100%',
+                    height: '100%',
+                }}>
+                    <LottieView style={{ height: 200 }} source={require("../../assets/animations/scanner.json")} autoPlay speed={2} />
+                </View>
+            </>)}
         </>
     )
 }

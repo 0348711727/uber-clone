@@ -6,6 +6,7 @@ import configureStore from "./redux/store";
 import Home from "./screens/Home";
 import RestaurantDetail from "./screens/RestaurantDetail"
 import OrderCompleted from "./screens/OrderCompleted";
+import Login from "./screens/Login";
 
 const store = configureStore();
 export default function RootNavigation() {
@@ -13,14 +14,15 @@ export default function RootNavigation() {
     const screenOptions = {
         headerShown: false
     }
-   
+
     return (
         <ReduxProvider store={store}>
             <NavigationContainer>
-                <Stack.Navigator initialRouteName="Home" screenOptions={screenOptions}>
+                <Stack.Navigator initialRouteName="Login" screenOptions={screenOptions}>
                     <Stack.Screen name="Home" component={Home} />
                     <Stack.Screen name="RestaurantDetail" component={RestaurantDetail} />
                     <Stack.Screen name="OrderCompleted" component={OrderCompleted} />
+                    <Stack.Screen name="Login" component={Login} />
                 </Stack.Navigator>
             </NavigationContainer>
         </ReduxProvider>
