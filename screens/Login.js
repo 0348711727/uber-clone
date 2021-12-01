@@ -1,12 +1,75 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, createRef } from 'react'
 import { View, TextInput, StyleSheet, SafeAreaView, TouchableOpacity, Text, Alert } from 'react-native'
 import GlobalStyles from "../GlobalStyles";
 import LottieView from "lottie-react-native";
+import { userConstants } from "../redux/constants";
+import { loginService } from "../redux/service";
+import { useDispatch, useSelector } from "react-redux";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function Login() {
+export default function Login({ navigation }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    console.log(email, password);
+
+    const passwordInputRef = createRef();
+
+    const dispatch = useDispatch();
+    const loginRes = useSelector(state => state.userReducer)
+    // const login = async () => {
+    //     const loginResponse = await loginService(email, password);
+    //     // console.log(JSON.stringify(loginResponse, null, 2))
+    //     // const resStatus = await loginResponse.json();
+    //     // console.log({ resStatus })   
+    //     if (!loginResponse.success) {
+    //         dispatch({
+    //             type: userConstants.LOGIN_FAILURE,
+    //             payload: {
+    //                 error: loginResponse.message
+    //             }
+    //         })
+    //         return;
+    //         // thực hiện set token ở đây:
+    //     }
+    //     dispatch({
+    //         type: userConstants.LOGIN_SUCCESS,
+    //         payload: {
+    //             user: loginResponse.user
+    //         }
+    //     })
+    //     // console.log(loginResponse.user)
+    //     return AsyncStorage.setItem('email', loginResponse.token)
+    // }
+
+    const login = () => {
+        return new Promise(async (resolve, reject) => {
+            return loginService(email, password).then(async loginResponse => {
+                console.log(JSON.stringify(loginResponse, null, 2));
+                if (!loginResponse.success) {
+                    dispatch({
+                        type: userConstants.LOGIN_FAILURE,
+                        payload: {
+                            error: loginResponse.message
+                        }
+                    })
+                    reject('Login failure');
+                    // thực hiện set token ở đây:
+                }
+                else {
+                    dispatch({
+                        type: userConstants.LOGIN_SUCCESS,
+                        payload: {
+                            user: loginResponse.user,
+                            message: loginResponse.message
+                        }
+                    })
+                    await AsyncStorage.setItem('email', loginResponse.token)
+                    // console.log(loginResponse.user)
+                    resolve("Login successful");
+                }
+            });
+        })
+    }
+
     return (
         <SafeAreaView style={GlobalStyles.droidSafeArea}>
             <View style={styles.loginView}>
@@ -15,14 +78,25 @@ export default function Login() {
                     speed={1}
                     autoPlay />
                 <Text style={styles.loginText}>Login to your Uber Eat Account</Text>
-                <TextInput style={styles.loginInput} placeholder="Your Email" onChangeText={(email) => setEmail(email)} />
-                <TextInput style={styles.loginInput} placeholder="Your Password" onChangeText={(password) => setPassword(password)} />
+                <TextInput style={styles.loginInput}
+                    placeholder="Your Email"
+                    onChangeText={(email) => setEmail(email)}
+                    onSubmitEditing={() => console.log(passwordInputRef.current && passwordInputRef.current.focus())} />
+                <TextInput style={styles.loginInput}
+                    placeholder="Your Password"
+                    onChangeText={(password) => setPassword(password)}
+                    ref={passwordInputRef}
+                    secureTextEntry={true}
+                />
+                <Text style={{ color: 'red', fontStyle: 'italic', alignItems: 'flex-start', marginBottom: 20 }}>{loginRes && loginRes.error}</Text>
 
-                <TouchableOpacity style={styles.loginButton}>
+                <TouchableOpacity style={styles.loginButton} onPress={() => {
+                    login().then(() => navigation.navigate('Profile')).catch(error => console.log(error))
+                }} >
                     <Text style={styles.loginText}>Login</Text>
                 </TouchableOpacity>
             </View>
-        </SafeAreaView>
+        </SafeAreaView >
     )
 }
 const styles = StyleSheet.create({

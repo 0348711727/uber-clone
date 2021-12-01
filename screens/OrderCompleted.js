@@ -5,6 +5,7 @@ import GlobalStyles from '../GlobalStyles'
 import LottieView from 'lottie-react-native'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Menu from "../components/restaurantdetail/Menu";
+import { getOrder } from "../redux/service";
 
 export default function OrderCompleted({ navigation }) {
     const [lastOrder, setLastOrder] = useState([])
@@ -18,13 +19,6 @@ export default function OrderCompleted({ navigation }) {
 
 
     useEffect(() => {
-        const getOrder = () => {
-            fetch("http://192.168.31.22:5000/orders")
-                // fetch("http://192.168.1.9:5000/orders")
-                .then(res => res.json())
-                .then(json => setLastOrder([...json]))
-                .catch(err => console.log(err))
-        }
         getOrder()
         // return () => getOrder();
     }, [])
@@ -32,7 +26,7 @@ export default function OrderCompleted({ navigation }) {
     return (
         <SafeAreaView style={GlobalStyles.droidSafeArea}>
             <View style={{ position: 'absolute' }}>
-                <TouchableOpacity opacity={1} >
+                <TouchableOpacity opacity={1} onPress={() => navigation.navigate('Home')}>
                     <View style={{ position: 'absolute', top: 50, flexDirection: 'column', right: 20, height: 20, alignItems: 'center' }}>
                         <FontAwesome5 name='home' size={20} />
                         <Text>Home</Text>

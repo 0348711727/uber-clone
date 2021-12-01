@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import Order from "../restaurantdetail/Order"
 import { Divider } from 'react-native-elements/dist/divider/Divider'
 import LottieView from "lottie-react-native";
+import { addOrder } from "../../redux/service";
 
 export default function ViewCart({ navigation }) {
     const [modalVisible, setModalVisible] = useState(false)
@@ -18,23 +19,8 @@ export default function ViewCart({ navigation }) {
 
     const addOrderToDB = () => {
         setLoading(true)
-        const requestOptions = {
-            method: 'POST',
-            body: JSON.stringify({
-                item: items,
-                restaurantName: restaurantName,
-            }),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            },
-        }
-        // fetch('http://192.168.1.9:5000/orders', requestOptions)
-        fetch('http://192.168.31.22:5000/orders', requestOptions)
-            .then((response) => response.json())
-            .then(() => setTimeout(() => {
-                setLoading(false)
-            }, 2500))
-            .catch((err) => console.log(err));
+
+        addOrder(); // bên service
 
         navigation.navigate('OrderCompleted')
 
@@ -117,7 +103,7 @@ export default function ViewCart({ navigation }) {
                     </View>
                 </View>)
                 : (<></>)}
-            {loading && (<>
+            {/* {loading && (<>
                 <View style={{
                     backgroundColor: 'black',
                     position: 'absolute',
@@ -129,7 +115,7 @@ export default function ViewCart({ navigation }) {
                 }}>
                     <LottieView style={{ height: 200 }} source={require("../../assets/animations/scanner.json")} autoPlay speed={2} />
                 </View>
-            </>)}
+            </>)} */}
         </>
     )
 }
